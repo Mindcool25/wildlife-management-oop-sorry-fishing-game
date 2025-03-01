@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://clybltqaojq12"]
+
+[ext_resource type="Texture2D" uid="uid://6qbu503wohgb" path="res://assets/circle.svg" id="1_f2c3r"]
+[ext_resource type="Script" path="res://scripts/fishing.gd" id="1_sdpo3"]
+[ext_resource type="Texture2D" uid="uid://bbgyjai54r7xb" path="res://assets/point.svg" id="2_w3jw7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_sdpo3")
+
+[node name="Circle" type="Sprite2D" parent="."]
+texture = ExtResource("1_f2c3r")
+
+[node name="Point" type="Sprite2D" parent="."]
+texture = ExtResource("2_w3jw7")
