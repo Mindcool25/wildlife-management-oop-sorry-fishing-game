@@ -12,6 +12,10 @@ script = ExtResource("1_sdpo3")
 circle = NodePath("Middle")
 player = NodePath("Middle/Player")
 
+[node name="Score" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Middle" type="Sprite2D" parent="."]
 texture = ExtResource("5_71bus")
 

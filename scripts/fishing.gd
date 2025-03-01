@@ -61,5 +61,6 @@ func _on_player_area_area_entered(area: Area2D) -> void:
 	reset_point()
 	# Add points to current score
 	curr_points += got_points
+	curr_points.connect($scoreLabel.scoring.bind())
 	print(curr_points)
 	pass # Replace with function body.

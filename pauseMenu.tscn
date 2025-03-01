@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://cen5ndhw8u3ma"]
+
+[ext_resource type="Texture2D" uid="uid://m3uh178sjasv" path="res://assets/shadow(NotTheHedgehog).png" id="1_32r41"]
+[ext_resource type="Texture2D" uid="uid://rty8e6f5iu32" path="res://assets/toggleButtonOn.png" id="1_in60d"]
+[ext_resource type="Texture2D" uid="uid://nigr0ut1gi88" path="res://assets/toggleButtonOff.png" id="2_vyng0"]
+[ext_resource type="Texture2D" uid="uid://c4i5o7y0uh0dc" path="res://assets/toggleMusic.png" id="3_aa0lv"]
+[ext_resource type="Texture2D" uid="uid://b3c51aoq7yu6t" path="res://assets/toggleSFX.png" id="4_lstd4"]
+[ext_resource type="Texture2D" uid="uid://cixwrq0gw6yjt" path="res://assets/back.png" id="5_ghxqa"]
+[ext_resource type="Texture2D" uid="uid://ye3k8506ud5m" path="res://assets/backClicked.png" id="6_u8rso"]
+[ext_resource type="Texture2D" uid="uid://bm8ctohit1ruv" path="res://assets/backkHover.png" id="7_7d5y1"]
+
+[sub_resource type="GDScript" id="GDScript_k6vek"]
+script/source = "extends Node2D
+
+
+
+func _on_toggle_music_pause_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
+
+
+
+func _on_toggle_sfx_pause_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
+
+
+
+
+func _on_back_button_pause_pressed() -> void:
+	pass # Replace with function body.
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_k6vek")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(958, 542)
+texture = ExtResource("1_32r41")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 457.0
+offset_top = 147.0
+offset_right = 1433.0
+offset_bottom = 981.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="toggleMusicPause" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("1_in60d")
+theme_override_icons/unchecked = ExtResource("2_vyng0")
+button_pressed = true
+icon = ExtResource("3_aa0lv")
+
+[node name="toggleSFXPause" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("1_in60d")
+theme_override_icons/unchecked = ExtResource("2_vyng0")
+button_pressed = true
+icon = ExtResource("4_lstd4")
+
+[node name="backButtonPause" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_ghxqa")
+texture_pressed = ExtResource("6_u8rso")
+texture_hover = ExtResource("7_7d5y1")
+
+[connection signal="toggled" from="VBoxContainer/toggleMusicPause" to="." method="_on_toggle_music_pause_toggled"]
+[connection signal="toggled" from="VBoxContainer/toggleSFXPause" to="." method="_on_toggle_sfx_pause_toggled"]
+[connection signal="pressed" from="VBoxContainer/backButtonPause" to="." method="_on_back_button_pause_pressed"]
