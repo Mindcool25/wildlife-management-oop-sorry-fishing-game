@@ -1,6 +1,7 @@
 extends Node2D
 
 var points: int = 0
+var playing = true
 
 func setup_point(point_value: int):
 	points = point_value
@@ -17,8 +18,9 @@ func _ready() -> void:
 	# Create tween between an execute it
 	while not tween:
 		pass
-	tween.tween_property(self, "position", Vector2(0,0), 0.72)
-	tween.tween_callback(_ready)
+	if playing:
+		tween.tween_property(self, "position", Vector2(0,0), 0.72)
+		tween.tween_callback(_ready)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

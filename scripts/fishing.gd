@@ -8,10 +8,13 @@ var target
 var start 
 var player_rotation = 0
 var curr_points = 0
+@onready var playing = true
 
 func _ready() -> void:
 	# Start RNG
 	randomize()
+	# Start that tang
+	reset_point()
 	
 	# Set up positions/targets
 	while not circle:
@@ -35,9 +38,9 @@ func handle_player(delta: float) -> void:
 			player_rotation += delta * 8
 		if Input.is_action_pressed("p2 left"):
 			player_rotation -= delta * 8
-		
-	if Input.is_action_just_pressed("ui_down"):
-		reset_point()
+	
+	if !playing and Input.is_action_just_pressed("space"):
+		get_tree().change_scene_to_file("res://boating.tscn")
 	
 	# Set player postion and rotation
 	player.rotation = player_rotation
@@ -48,9 +51,13 @@ var scene = preload("res://point.tscn")
 
 func reset_point() -> void:
 	# Create an instance of the point and add it as a child to the middle circle
-	var instance = scene.instantiate()
-	instance.setup_point(1)
-	$Middle.add_child(instance)
+	if playing:
+		var instance = scene.instantiate()
+		instance.setup_point(1)
+		$Middle.add_child(instance)
+
+func stop_it():
+	playing = false
 	pass
 
 func _on_player_area_area_entered(area: Area2D) -> void:
@@ -58,7 +65,8 @@ func _on_player_area_area_entered(area: Area2D) -> void:
 	var got_points = area.get_parent().get_parent().points
 	# Kill the bitch
 	area.get_parent().get_parent().queue_free()
-	reset_point()
+	if playing:
+		reset_point()
 	# Add points to current score
 	curr_points += got_points
 	print(curr_points)

@@ -5,6 +5,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Return.text = ""
 	pass # Replace with function body.
 
 
@@ -17,4 +18,7 @@ func _process(delta: float) -> void:
 
 func _on_timer_thing_timeout() -> void:
 	print("TIOMERE DONE")
+	P1.stop_it()
+	P2.stop_it()
+	$Return.text = "Press Space To Return"
 	pass # Replace with function body.
