@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://clybltqaojq12"]
+[gd_scene load_steps=7 format=3 uid="uid://clybltqaojq12"]
 
 [ext_resource type="Texture2D" uid="uid://6qbu503wohgb" path="res://assets/circle.svg" id="1_f2c3r"]
 [ext_resource type="Script" path="res://scripts/fishing.gd" id="1_sdpo3"]
 [ext_resource type="Texture2D" uid="uid://bbgyjai54r7xb" path="res://assets/point.svg" id="2_w3jw7"]
 [ext_resource type="Texture2D" uid="uid://bbcmgumojbdcv" path="res://assets/player.svg" id="4_koy8n"]
 [ext_resource type="Texture2D" uid="uid://cthb2gm47klhu" path="res://assets/middle.svg" id="5_71bus"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg4to"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("circle", "point", "player")]
 script = ExtResource("1_sdpo3")
@@ -17,13 +19,26 @@ position = Vector2(880, 527)
 texture = ExtResource("5_71bus")
 
 [node name="Player" type="Sprite2D" parent="Middle"]
-position = Vector2(-144, 132)
+position = Vector2(-93, 49)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_koy8n")
+
+[node name="PlayerArea" type="Area2D" parent="Middle/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Middle/Player/PlayerArea"]
+shape = SubResource("RectangleShape2D_qg4to")
 
 [node name="Point" type="Sprite2D" parent="Middle"]
 texture = ExtResource("2_w3jw7")
 
+[node name="Area2D" type="Area2D" parent="Middle/Point"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Middle/Point/Area2D"]
+position = Vector2(24, 33)
+polygon = PackedVector2Array(15, -33, 26, -33, 24, -16, 14, 1, 1, 11, -5, 1, 4, -6, 13, -21)
+
 [node name="Circle2" type="Sprite2D" parent="Middle"]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_f2c3r")
+
+[connection signal="area_entered" from="Middle/Player/PlayerArea" to="." method="_on_player_area_area_entered"]
