@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dplkpoxjg12hh"]
+[gd_scene load_steps=10 format=3 uid="uid://dplkpoxjg12hh"]
 
 [ext_resource type="Script" path="res://settings.gd" id="1_eox11"]
+[ext_resource type="Texture2D" uid="uid://rty8e6f5iu32" path="res://assets/toggleButtonOn.png" id="2_3inpi"]
+[ext_resource type="Texture2D" uid="uid://c4i5o7y0uh0dc" path="res://assets/toggleMusic.png" id="2_6r4rw"]
+[ext_resource type="Texture2D" uid="uid://b3c51aoq7yu6t" path="res://assets/toggleSFX.png" id="3_l3fyu"]
+[ext_resource type="Texture2D" uid="uid://nigr0ut1gi88" path="res://assets/toggleButtonOff.png" id="3_w3vli"]
+[ext_resource type="Texture2D" uid="uid://cixwrq0gw6yjt" path="res://assets/back.png" id="4_pjfsy"]
+[ext_resource type="Texture2D" uid="uid://ye3k8506ud5m" path="res://assets/backClicked.png" id="5_71c6p"]
+[ext_resource type="Texture2D" uid="uid://bm8ctohit1ruv" path="res://assets/backkHover.png" id="6_p6lf5"]
+[ext_resource type="Texture2D" uid="uid://b7u5ji2h550ok" path="res://assets/optionsBackground.png" id="9_dnxgm"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -11,6 +19,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eox11")
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(955, 538)
+texture = ExtResource("9_dnxgm")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -18,24 +30,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -207.5
-offset_top = -57.0
-offset_right = 207.5
-offset_bottom = 57.0
+offset_left = -488.0
+offset_top = -417.0
+offset_right = 488.0
+offset_bottom = 417.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="toggleMusic" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
-text = "Toggle Music"
+theme_override_icons/checked = ExtResource("2_3inpi")
+theme_override_icons/unchecked = ExtResource("3_w3vli")
+button_pressed = true
+icon = ExtResource("2_6r4rw")
 
 [node name="toggleSFX" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
-text = "Toggle Sound Effects"
+theme_override_icons/checked = ExtResource("2_3inpi")
+theme_override_icons/unchecked = ExtResource("3_w3vli")
+button_pressed = true
+icon = ExtResource("3_l3fyu")
 
-[node name="backButton" type="Button" parent="VBoxContainer"]
+[node name="backButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-text = "Back"
+texture_normal = ExtResource("4_pjfsy")
+texture_pressed = ExtResource("5_71c6p")
+texture_hover = ExtResource("6_p6lf5")
 
 [connection signal="toggled" from="VBoxContainer/toggleMusic" to="." method="_on_toggle_music_toggled"]
 [connection signal="toggled" from="VBoxContainer/toggleSFX" to="." method="_on_toggle_sfx_toggled"]
