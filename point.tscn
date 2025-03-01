@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://q5i462u6arrf"]
+[gd_scene load_steps=3 format=3 uid="uid://q5i462u6arrf"]
 
+[ext_resource type="Script" path="res://point.gd" id="1_qomm2"]
 [ext_resource type="Texture2D" uid="uid://bbgyjai54r7xb" path="res://assets/point.svg" id="1_v3hjr"]
 
 [node name="Point" type="Node2D"]
+script = ExtResource("1_qomm2")
 
 [node name="Point2" type="Sprite2D" parent="."]
 texture = ExtResource("1_v3hjr")
