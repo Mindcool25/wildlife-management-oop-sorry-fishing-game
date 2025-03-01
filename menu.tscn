@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwjwy7enpn0mv"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_x830p"]
+[ext_resource type="Texture2D" uid="uid://dx7fim8rtudui" path="res://assets/reel_teamwork_main.png" id="2_1ia4n"]
+[ext_resource type="Texture2D" uid="uid://dw62sf5um88hl" path="res://assets/start.png" id="3_2o3br"]
+[ext_resource type="Texture2D" uid="uid://rffy1wfpgma2" path="res://assets/startPressed.png" id="4_jygxv"]
+[ext_resource type="Texture2D" uid="uid://j75kd1srnn8w" path="res://assets/settings.png" id="4_srdf5"]
+[ext_resource type="Texture2D" uid="uid://db034ab8ltatf" path="res://assets/startHover.png" id="5_f1usw"]
+[ext_resource type="Texture2D" uid="uid://bimrsscsj2sej" path="res://assets/quit.png" id="5_lgvy4"]
+[ext_resource type="Texture2D" uid="uid://bryjv0hwok16w" path="res://assets/settingsPressed.png" id="7_dqart"]
+[ext_resource type="Texture2D" uid="uid://h73nmcokkde4" path="res://assets/settingsHover.png" id="8_eumeg"]
+[ext_resource type="Texture2D" uid="uid://lw70r4i2dbdc" path="res://assets/quitPressed.png" id="10_do2m8"]
+[ext_resource type="Texture2D" uid="uid://ctx0e51msorx7" path="res://assets/quitHover.png" id="11_fwgy1"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x830p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(958, 536)
+texture = ExtResource("2_1ia4n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 396.0
+offset_right = 1343.0
+offset_bottom = 901.0
+
+[node name="startButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../quitButton")
+texture_normal = ExtResource("3_2o3br")
+texture_pressed = ExtResource("4_jygxv")
+texture_hover = ExtResource("5_f1usw")
+texture_focused = ExtResource("5_f1usw")
+
+[node name="settingsButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_srdf5")
+texture_pressed = ExtResource("7_dqart")
+texture_hover = ExtResource("8_eumeg")
+texture_focused = ExtResource("8_eumeg")
+
+[node name="quitButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../startButton")
+texture_normal = ExtResource("5_lgvy4")
+texture_pressed = ExtResource("10_do2m8")
+texture_hover = ExtResource("11_fwgy1")
+texture_focused = ExtResource("11_fwgy1")
+
+[connection signal="pressed" from="VBoxContainer/startButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/settingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
