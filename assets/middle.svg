@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
-   sodipodi:docname="point.svg"
+   sodipodi:docname="middle.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="5.12"
-     inkscape:cx="32.617188"
-     inkscape:cy="22.949219"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="11.136932"
+     inkscape:cy="69.473241"
      inkscape:window-width="1912"
      inkscape:window-height="1042"
      inkscape:window-x="2"
@@ -38,18 +38,12 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <path
-       style="fill:none;stroke:#ffffff;stroke-width:2.91329;stroke-dasharray:none;stroke-opacity:1"
+    <ellipse
+       style="fill:#000000;fill-opacity:0.35395673;stroke:none;stroke-width:1.88818;stroke-dasharray:none;stroke-opacity:1"
        id="path1"
-       sodipodi:type="arc"
-       sodipodi:cx="13.229316"
-       sodipodi:cy="13.236036"
-       sodipodi:rx="11.777882"
-       sodipodi:ry="11.784863"
-       sodipodi:start="0"
-       sodipodi:end="1.0471976"
-       sodipodi:arc-type="arc"
-       d="M 25.007197,13.236036 A 11.777882,11.784863 0 0 1 19.118256,23.442028"
-       sodipodi:open="true" />
+       ry="12.285078"
+       rx="12.28508"
+       cy="13.229168"
+       cx="13.22917" />
   </g>
 </svg>
