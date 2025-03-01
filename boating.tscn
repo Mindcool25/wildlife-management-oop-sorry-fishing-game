@@ -6,8 +6,20 @@
 [ext_resource type="Script" path="res://fish.gd" id="4_bj8b5"]
 [ext_resource type="Texture2D" uid="uid://b8fd1h7kmvu8c" path="res://assets/fishShadow.png" id="4_ijfxc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnckr"]
-size = Vector2(131, 289)
+[sub_resource type="Animation" id="Animation_yqoej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
 
 [sub_resource type="Animation" id="Animation_rjahf"]
 resource_name = "down"
@@ -26,9 +38,8 @@ tracks/0/keys = {
 "values": [3]
 }
 
-[sub_resource type="Animation" id="Animation_2lv86"]
-resource_name = "up"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_vmaw7"]
+resource_name = "down_left"
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,11 +51,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_yqoej"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_x20af"]
+resource_name = "down_right"
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_oslae"]
@@ -92,8 +104,9 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_2rjd4"]
-resource_name = "up_right"
+[sub_resource type="Animation" id="Animation_2lv86"]
+resource_name = "up"
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -105,7 +118,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [7]
 }
 
 [sub_resource type="Animation" id="Animation_behob"]
@@ -124,8 +137,8 @@ tracks/0/keys = {
 "values": [6]
 }
 
-[sub_resource type="Animation" id="Animation_vmaw7"]
-resource_name = "down_left"
+[sub_resource type="Animation" id="Animation_2rjd4"]
+resource_name = "up_right"
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -137,23 +150,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_x20af"]
-resource_name = "down_right"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v5f73"]
@@ -169,23 +166,22 @@ _data = {
 "up_right": SubResource("Animation_2rjd4")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnckr"]
+size = Vector2(131, 289)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_767ec"]
 radius = 40.9674
 height = 182.564
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="water" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
 texture = ExtResource("1_7x1m4")
 
 [node name="boat" type="CharacterBody2D" parent="."]
 position = Vector2(-326, -83)
 script = ExtResource("1_vxxp6")
-
-[node name="boatCollision" type="CollisionShape2D" parent="boat"]
-position = Vector2(538.5, 287.5)
-shape = SubResource("RectangleShape2D_rnckr")
 
 [node name="boat" type="Sprite2D" parent="boat"]
 position = Vector2(537, 294)
@@ -199,6 +195,12 @@ libraries = {
 "": SubResource("AnimationLibrary_v5f73")
 }
 
+[node name="Area2D" type="Area2D" parent="boat"]
+
+[node name="boatCollision" type="CollisionShape2D" parent="boat/Area2D"]
+position = Vector2(538.5, 287.5)
+shape = SubResource("RectangleShape2D_rnckr")
+
 [node name="fish" type="CharacterBody2D" parent="."]
 position = Vector2(276, 52)
 script = ExtResource("4_bj8b5")
@@ -211,12 +213,130 @@ collision_layer = 255
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="fish/fishCollision"]
 position = Vector2(9.17554, -14.8933)
 rotation = -0.118682
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_767ec")
 
 [node name="fishsprite" type="Sprite2D" parent="fish"]
 position = Vector2(1484, 356)
 texture = ExtResource("4_ijfxc")
 
+[node name="fish2" type="CharacterBody2D" parent="."]
+position = Vector2(1541, -514)
+rotation = 1.81616
+script = ExtResource("4_bj8b5")
+
+[node name="fishCollision" type="Area2D" parent="fish2"]
+position = Vector2(1474, 359)
+rotation = 0.47822
+collision_layer = 255
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fish2/fishCollision"]
+position = Vector2(9.17554, -14.8933)
+rotation = -0.118682
+shape = SubResource("CapsuleShape2D_767ec")
+
+[node name="fishsprite" type="Sprite2D" parent="fish2"]
+position = Vector2(1484, 356)
+texture = ExtResource("4_ijfxc")
+
+[node name="fish7" type="CharacterBody2D" parent="."]
+position = Vector2(2090, 906)
+rotation = 3.18429
+script = ExtResource("4_bj8b5")
+
+[node name="fishCollision" type="Area2D" parent="fish7"]
+position = Vector2(1474, 359)
+rotation = 0.47822
+collision_layer = 255
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fish7/fishCollision"]
+position = Vector2(9.17554, -14.8933)
+rotation = -0.118682
+shape = SubResource("CapsuleShape2D_767ec")
+
+[node name="fishsprite" type="Sprite2D" parent="fish7"]
+position = Vector2(1484, 356)
+texture = ExtResource("4_ijfxc")
+
+[node name="fish3" type="CharacterBody2D" parent="."]
+position = Vector2(996, 2136)
+rotation = -2.29821
+script = ExtResource("4_bj8b5")
+
+[node name="fishCollision" type="Area2D" parent="fish3"]
+position = Vector2(1474, 359)
+rotation = 0.47822
+collision_layer = 255
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fish3/fishCollision"]
+position = Vector2(9.17554, -14.8933)
+rotation = -0.118682
+shape = SubResource("CapsuleShape2D_767ec")
+
+[node name="fishsprite" type="Sprite2D" parent="fish3"]
+position = Vector2(1484, 356)
+texture = ExtResource("4_ijfxc")
+
+[node name="fish4" type="CharacterBody2D" parent="."]
+position = Vector2(1068, 2340)
+rotation = -1.5018
+script = ExtResource("4_bj8b5")
+
+[node name="fishCollision" type="Area2D" parent="fish4"]
+position = Vector2(1474, 359)
+rotation = 0.47822
+collision_layer = 255
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fish4/fishCollision"]
+position = Vector2(9.17554, -14.8933)
+rotation = -0.118682
+shape = SubResource("CapsuleShape2D_767ec")
+
+[node name="fishsprite" type="Sprite2D" parent="fish4"]
+position = Vector2(1484, 356)
+texture = ExtResource("4_ijfxc")
+
+[node name="fish5" type="CharacterBody2D" parent="."]
+position = Vector2(362, -880)
+rotation = 0.661643
+script = ExtResource("4_bj8b5")
+
+[node name="fishCollision" type="Area2D" parent="fish5"]
+position = Vector2(1474, 359)
+rotation = 0.47822
+collision_layer = 255
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fish5/fishCollision"]
+position = Vector2(9.17554, -14.8933)
+rotation = -0.118682
+shape = SubResource("CapsuleShape2D_767ec")
+
+[node name="fishsprite" type="Sprite2D" parent="fish5"]
+position = Vector2(1484, 356)
+texture = ExtResource("4_ijfxc")
+
+[node name="fish6" type="CharacterBody2D" parent="."]
+position = Vector2(-658, 593)
+rotation = -0.553249
+script = ExtResource("4_bj8b5")
+
+[node name="fishCollision" type="Area2D" parent="fish6"]
+position = Vector2(1474, 359)
+rotation = 0.47822
+collision_layer = 255
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fish6/fishCollision"]
+position = Vector2(9.17554, -14.8933)
+rotation = -0.118682
+shape = SubResource("CapsuleShape2D_767ec")
+
+[node name="fishsprite" type="Sprite2D" parent="fish6"]
+position = Vector2(1484, 356)
+texture = ExtResource("4_ijfxc")
+
 [connection signal="area_entered" from="fish/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
-[connection signal="area_shape_entered" from="fish/fishCollision" to="fish" method="_on_fish_collision_area_shape_entered"]
+[connection signal="area_entered" from="fish2/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
+[connection signal="area_entered" from="fish7/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
+[connection signal="area_entered" from="fish3/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
+[connection signal="area_entered" from="fish4/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
+[connection signal="area_entered" from="fish5/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
+[connection signal="area_entered" from="fish6/fishCollision" to="boat" method="_on_fish_collision_area_entered"]
