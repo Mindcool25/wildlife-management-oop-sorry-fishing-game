@@ -9,23 +9,21 @@
 [node name="Main" type="Node2D" node_paths=PackedStringArray("circle", "point", "player")]
 script = ExtResource("1_sdpo3")
 circle = NodePath("Middle")
-point = NodePath("Point")
-player = NodePath("Player")
+point = NodePath("Middle/Point")
+player = NodePath("Middle/Player")
 
-[node name="Circle2" type="Sprite2D" parent="."]
-position = Vector2(550, 250)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_f2c3r")
+[node name="Middle" type="Sprite2D" parent="."]
+position = Vector2(880, 527)
+texture = ExtResource("5_71bus")
 
-[node name="Point" type="Sprite2D" parent="."]
-position = Vector2(550, 250)
-texture = ExtResource("2_w3jw7")
-
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(406, 382)
+[node name="Player" type="Sprite2D" parent="Middle"]
+position = Vector2(-144, 132)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_koy8n")
 
-[node name="Middle" type="Sprite2D" parent="."]
-position = Vector2(550, 250)
-texture = ExtResource("5_71bus")
+[node name="Point" type="Sprite2D" parent="Middle"]
+texture = ExtResource("2_w3jw7")
+
+[node name="Circle2" type="Sprite2D" parent="Middle"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_f2c3r")

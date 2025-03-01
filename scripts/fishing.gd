@@ -4,42 +4,45 @@ extends Node2D
 @export var point: Sprite2D
 @export var player: Sprite2D
 
-var target = Vector2(550, 250)
-var start = target + Vector2(300, cos(-PI/3)*300)
+var target
+var start 
+var tween
+var player_rotation = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Put point at starting position and make it blue (r, g, b)
-	point.position = start
-	point.modulate = Color(0, 0, 1)
-	pass # Replace with function body.
-
-# Start rotation at 0 rad
-var rot = 0
-var player_distance = 55
-
-# Create tween object
-var tween = create_tween()
+	## Start RNG
+	randomize()
+	
+	# Set up positions/targets
+	while not circle:
+		pass
+	target = circle.position
+	while not point:
+		pass
+	point.position = Vector2(cos(0) * 300, sin(0) * 300)
+	point.rotation = -PI/6
 
 func _process(delta: float) -> void:
-	# Set player position to the outside of the middle at the radian angle rot
-	player.position = Vector2(cos(rot) * player_distance, sin(rot) * player_distance) + target
-	player.rotation = rot
-	
-	# Tween point to the middle circle (obj, property, target pos, time in sec
-	tween.tween_property(point, "position", target, 1)
-
-	# Once tween finishes, change color to red
-	tween.tween_callback(func(): point.modulate = Color(1,0,0))
-	
-	rotate_player(delta)
-	
+	handle_player(delta)
+	pass
 
 
-
-func rotate_player(delta: float) -> void:
+func handle_player(delta: float) -> void:
 	# Rotate right/left
 	if Input.is_action_pressed("ui_right"):
-		rot += delta * 8
+		player_rotation += delta * 8
 	if Input.is_action_pressed("ui_left"):
-		rot -= delta * 8
+		player_rotation -= delta * 8
+	if Input.is_action_just_pressed("ui_down"):
+		reset_point()
+	player.rotation = player_rotation
+	player.position = Vector2(cos(player_rotation) * 55, sin(player_rotation) * 55)
+
+func reset_point() -> void:
+	var new_rot = randfn(0, 2*PI)
+	point.position = Vector2(cos(new_rot)*300, sin(new_rot) * 300)
+	point.rotation = new_rot - (PI/6)
+	tween = create_tween()
+	tween.tween_property(point, "position", Vector2(0,0), 0.80)
+	pass
