@@ -12,7 +12,6 @@ config_version=5
 
 config/name="wildlife-management-oop-sorry-fishing-game"
 run/main_scene="res://menu.tscn"
-
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
